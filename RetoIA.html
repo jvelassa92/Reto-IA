@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy - Heladería Artesanal & Alegría</title>
+    <!-- Google Fonts: Fredoka & Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --pink-pastel: #FFB7B2;
+            --pink-light: #FFE4E1;
+            --cream: #FFF5E1;
+            --mint-pastel: #B5EAD7;
+            --blue-pastel: #C7CEEA;
+            --yellow-pastel: #E2F0CB;
+            --text-dark: #4A4A4A;
+            --text-soft: #6C757D;
+            --white: #FFFFFF;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 35px rgba(255, 183, 178, 0.3);
+            --border-radius: 24px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Fredoka', cursive;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 2rem;
+            color: var(--pink-pastel);
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--pink-pastel), var(--mint-pastel));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(255, 183, 178, 0.4);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--pink-pastel);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--pink-pastel);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: calc(100vh - 90px);
+            padding: 2rem 8%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, var(--cream) 100%);
+            gap: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .badge {
+            background-color: var(--pink-light);
+            color: #d85c5c;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 183, 178, 0.5);
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            color: var(--pink-pastel);
+            background: linear-gradient(45deg, #FF9AA2, #FFB7B2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-soft);
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--pink-pastel), #FF9AA2);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--mint-pastel), var(--blue-pastel));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(181, 234, 215, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-img {
+            width: 85%;
+            height: 85%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid var(--white);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .products {
+            padding: 6rem 8%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3.5rem;
+            background-color: var(--white);
+            border-radius: 50px 50px 0 0;
+        }
+
+        .section-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            max-width: 600px;
+        }
+
+        .section-subtitle {
+            color: var(--pink-pastel);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--text-dark);
+        }
+
+        .products-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .product-card {
+            background-color: var(--cream);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            background-color: var(--white);
+            border-color: var(--pink-light);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-image-bg {
+            width: 100%;
+            height: 220px;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .card-img {
+            transform: scale(1.08);
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: var(--white);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-family: 'Fredoka', cursive;
+            font-weight: 700;
+            color: var(--text-dark);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .product-desc {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: var(--white);
+            width: 100%;
+            justify-content: center;
+            padding: 0.9rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.25);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--blue-pastel), var(--mint-pastel));
+            padding: 5rem 8% 2rem 8%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+            max-width: 550px;
+            width: 100%;
+        }
+
+        .footer-title {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+        }
+
+        .footer-desc {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .subscribe-form {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+            background-color: var(--white);
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .subscribe-input {
+            flex: 1;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            color: var(--text-dark);
+        }
+
+        .subscribe-input::placeholder {
+            color: #A0AEC0;
+        }
+
+        .btn-subscribe {
+            background-color: var(--pink-pastel);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+        }
+
+        .btn-subscribe:hover {
+            background-color: #FF9AA2;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--pink-pastel);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 900px) {
+            header {
+                padding: 1.2rem 5%;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 3rem 5%;
+                justify-content: center;
+            }
+
+            .hero-content {
+                align-items: center;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-image-wrapper {
+                width: 300px;
+                height: 300px;
+            }
+
+            .products {
+                padding: 4rem 5%;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-menu {
+                display: none; /* Simplificado para landing page rápida */
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+                background-color: transparent;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .subscribe-input {
+                box-shadow: var(--shadow-soft);
+            }
+
+            .btn-subscribe {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-ice-cream"></i>
+            </div>
+            Happy
+        </a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#helados" class="nav-link">Helados</a></li>
+                <li><a href="#galeria" class="nav-link">Galería</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="badge">
+                <i class="fa-solid fa-sparkles"></i> 100% Natural & Artesanal
+            </div>
+            <h1 class="hero-title">Sabor que crea <span>momentos felices</span></h1>
+            <p class="hero-description">Descubre una explosión de frescura y dulzura en cada cucharada. Helados elaborados a mano con ingredientes naturales y mucho amor.</p>
+            <a href="#helados" class="btn btn-primary">
+                Ver menú <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="hero-image-container">
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80" alt="Helado Artesanal Happy" class="hero-img" onerror="this.src='https://placehold.co/400x400/FFB7B2/FFF?text=Helado+Happy'">
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="helados">
+        <div class="section-header">
+            <span class="section-subtitle">Nuestros Favoritos</span>
+            <h2 class="section-title">Elige tu Alegría del Día</h2>
+        </div>
+
+        <div class="products-grid">
+            <!-- Tarjeta 1 -->
+            <div class="product-card">
+                <div class="card-image-bg">
+                    <span class="price-tag">$3.500</span>
+                    <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=600&q=80" alt="Fresa de Dulce Amor" class="card-img" onerror="this.src='https://placehold.co/300x220/FFB7B2/FFF?text=Helado+Fresa'">
+                </div>
+                <h3 class="product-title">Fresa Silvestre</h3>
+                <p class="product-desc">Cremoso helado preparado con fresas orgánicas recién cosechadas y trozos de fruta natural.</p>
+                <a href="https://wa.me/573163565286?text=Hola%20Happy!%20Quiero%20comprar%20el%20helado%20de%20Fresa%20Silvestre" target="_blank" class="btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
+                </a>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="product-card">
+                <div class="card-image-bg">
+                    <span class="price-tag">$4.000</span>
+                    <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=600&q=80" alt="Menta Choco Chip" class="card-img" onerror="this.src='https://placehold.co/300x220/B5EAD7/FFF?text=Helado+Menta'">
+                </div>
+                <h3 class="product-title">Menta Fresh Chip</h3>
+                <p class="product-desc">Una refrescante combinación de menta natural acompañada de finas chispas de chocolate amargo 70%.</p>
+                <a href="https://wa.me/573163565286?text=Hola%20Happy!%20Quiero%20comprar%20el%20helado%20de%20Menta%20Fresh%20Chip" target="_blank" class="btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
+                </a>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="product-card">
+                <div class="card-image-bg">
+                    <span class="price-tag">$3.800</span>
+                    <img src="https://images.unsplash.com/photo-1580710860824-c09a896695b7?auto=format&fit=crop&w=600&q=80" alt="Vainilla Caramel" class="card-img" onerror="this.src='https://placehold.co/300x220/FFF5E1/4A4A4A?text=Helado+Vainilla'">
+                </div>
+                <h3 class="product-title">Vainilla & Caramelo</h3>
+                <p class="product-desc">Extracto artesanal de vainilla de Papantla con un suave veteado de caramelo dorado saldo.</p>
+                <a href="https://wa.me/573163565286?text=Hola%20Happy!%20Quiero%20comprar%20el%20helado%20de%20Vainilla%20y%20Caramelo" target="_blank" class="btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="logo" style="font-size: 2.5rem; justify-content: center;">
+                <div class="logo-icon" style="background: var(--white); color: var(--pink-pastel);">
+                    <i class="fa-solid fa-ice-cream"></i>
+                </div>
+                Happy
+            </div>
+            <h2 class="footer-title">¿Quieres ofertas dulces?</h2>
+            <p class="footer-desc">Déjanos tu correo y recibe descuentos especiales, lanzamientos de nuevos sabores e invitaciones exclusivas.</p>
+            
+            <form class="subscribe-form" onsubmit="event.preventDefault(); handleSubscribe();">
+                <input type="email" id="email-input" class="subscribe-input" placeholder="Escribe tu correo aquí..." required>
+                <button type="submit" class="btn btn-subscribe">Suscribirme</button>
+            </form>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Happy Heladería. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubscribe() {
+            const emailInput = document.getElementById('email-input');
+            if (emailInput.value) {
+                // Interacción elegante en lugar de un alert simple
+                const button = document.querySelector('.btn-subscribe');
+                const originalText = button.textContent;
+                
+                button.style.backgroundColor = '#B5EAD7';
+                button.textContent = '¡Suscrito!';
+                emailInput.value = '';
+
+                setTimeout(() => {
+                    button.style.backgroundColor = '';
+                    button.textContent = originalText;
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
